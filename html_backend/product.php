@@ -1,37 +1,47 @@
-<?php 
+<?php
 include "sql_connection.php";
 session_start();
-if(isset($_GET['product_id']))
-{
-    $conn = connect_to_sql();
-    $querry = $conn->prepare("SELECT * FROM product");
-    $querry->execute([$_GET['product_id']]);
-    $product = $querry->fetch();
-
-    if(!$product)
-    {
-        exit("Sản phẩm không tồn tại!");
+$conn = connect_to_sql();
+$user_id = $_SESSION['user_id'];
+$get_user = $conn->prepare("SELECT * FROM `account_guest` WHERE id = '$user_id'");
+$get_user->execute();
+$get_product = $conn->prepare("SELECT * FROM `product`");
+$get_product->execute();
+if ($get_product->rowCount() > 0) {
+    while ($product = $get_product->fetch()) {
+    ?>    
+        <form method="post" class="box" action="">
+            <img src="images/<?php echo $product['image']; ?>" alt="">
+            <div class="name"><?php echo $product['name']; ?></div>
+            <div class="price"><?php echo $product['price']; ?></div>
+            <input type="number" min="1" name="quantity" value="1">
+            <input type="hidden" name="image" value="<?php echo $product['image']; ?>">
+            <input type="hidden" name="name" value="<?php echo $product['name']; ?>">
+            <input type="hidden" name="price" value="<?php echo $product['price']; ?>">
+            <input type="submit" value="Thêm vào giỏ hàng" name="add_to_cart" class="btn">
+        </form>
+    <?php
     }
-};
+    ;
+}
+;
+if(isset($_POST['add_to_cart']))
+{
+    $name = $_POST['name'];
+    $price = $_POST['price'];
+    $quantity = $_POST['quantity'];
+    $image = $_POST['image'];
+    $select_cart = $conn->prepare("SELECT * FROM `cart` WHERE name = '$name' AND user_id = '$user_id' ");
+    $select_cart->execute();
+    if ($select_cart->rowCount() > 0) {
+        $message[] = 'Sản phẩm đã có trong giỏ !';
+    }
+    else
+    {
+        //$add = connect_to_sql();
+        $conn->exec("INSERT INTO `cart` (user_id,name,price,quantity) 
+        VALUES ('$user_id','$name','$price','$quantity')");
+        $message[] = 'Đã thêm sản phẩm vào giỏ !';
+    }
+};  
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sản phẩm</title>
-</head>
-<body>
-    <div class="product content-wrapper">
-        <div>
-            <h1 class = "name"><?=$product['name']?></h1>
-            <span class = "price"><?=$product['price']?></span>
-            <form action="index.php?page=cart" method = "post">
-                <input type="number" name="quantity" value="1" min="1" max="<?=$product['quantity']?>">
-                <input type="hidden" name="product_id" value="<?=$product['product_id']?>">
-                <input type="submit" value="Thêm vào giỏ hàng">
-            </form>
-        </div>
-    </div>
-</body>
-</html> 

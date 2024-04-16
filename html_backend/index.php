@@ -2,17 +2,16 @@
 include "sql_connection.php";
 session_start();
 $user_id = $_SESSION['user_id'];
-if (!isset($user_id)) {
-    header('location:login.php');
-}
-;
-if(isset($_GET['logout']))
+if(!isset($user_id))
 {
+    header("location:login.php");
+}
+if (isset($_GET['logout'])) {
     unset($user_id);
     session_destroy();
     header("location:login.php");
-}
-;
+};
+
 ?>
 
 <!DOCTYPE html>
@@ -42,26 +41,24 @@ if(isset($_GET['logout']))
 
             <?php
             $conn = connect_to_sql();
-            $querry = $conn->prepare("SELECT * FROM `account_guest` WHERE id = '$user_id'");
-            $querry->execute();
-            if ($querry->rowCount() > 0) {
-                $user = $querry->fetch();
+            $get_user = $conn->prepare("SELECT * FROM `account_guest` WHERE id = '$user_id'");
+            $get_user->execute();
+            if ($get_user->rowCount() > 0) {
+                $user = $get_user->fetch();
             }
             ;
             ?>
-
             <p> username: <span>
-                    <?php echo $user['name']; ?>
+                    <?php echo $user['name']; ?> 
                 </span></p>
             <p> email: <span>
-                    <?php echo $user['email']; ?>
-                </span></p>
+                    <?php echo $user['email']; ?> 
+                </span>
             <div class="flex">
                 <div class="flex">
-                    <a href="login.php" class="btn">login</a>
-                    <a href="register.php" class="option-btn">register</a>
-                    <a href="index.php?logout=<?php echo $user_id; ?>"
-                        onclick="return confirm('are your sure you want to logout?');" class="delete-btn">logout</a>
+                    <a href="login.php" class="btn">Đăng nhập</a>
+                    <a href="index.php?logout=<?php echo $user_id; ?>" onclick="return confirm('Bạn muốn đăng xuất?');"
+                        class="delete-btn">Đăng xuất</a>
                 </div>
             </div>
         </div>
