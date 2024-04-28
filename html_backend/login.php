@@ -14,7 +14,7 @@ if(isset($_POST['submit']))
     {
         $row = $Execquery->fetch();
         $_SESSION['user_id'] = $row['id'];
-        header('location:product.php');
+        header('location:home.php');
     }
     else
     {
