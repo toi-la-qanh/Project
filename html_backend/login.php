@@ -1,12 +1,13 @@
 <?php 
-include "sql_connection.php";
+include "database/sql_connection.php";
 session_start();
 if(isset($_POST['submit']))
 {
     $email = $_POST['email'];
     $pass = $_POST['password'];
     
-    $query = connect_to_sql();
+    $database = new SQLConnect();
+    $query = $database->connect();
     $Execquery = $query->prepare("SELECT * FROM `account_guest` WHERE email = '$email'");
     $Execquery->execute();
 

@@ -1,5 +1,5 @@
 <?php 
-include "sql_connection.php";
+include "database/sql_connection.php";
 if(isset($_POST['submit']))
 {
     $email = $_POST['email'];
@@ -7,7 +7,8 @@ if(isset($_POST['submit']))
     $pass = $_POST['password'];
     $cpass = $_POST['confirm_password'];
     
-    $query = connect_to_sql();
+    $db = new SQLConnect();
+    $query = $db->connect();
     $Execquery = $query->prepare("SELECT * FROM `account_guest` WHERE name = '$name' 
     AND password = '$pass' AND email = '$email'");
     $Execquery->execute();

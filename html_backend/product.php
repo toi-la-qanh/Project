@@ -1,5 +1,6 @@
 <?php
-$conn = connect_to_sql();
+$db = new SQLConnect();
+$conn = $db->connect();
 $user_id = $_SESSION['user_id'];
 $get_product = $conn->prepare("SELECT * FROM `product`");
 $get_product->execute();
