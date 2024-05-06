@@ -25,11 +25,15 @@ if ($get_cart->rowCount() > 0) {
         </form>
 <?php
     }
+?>
+    <div>Tổng tiền:
+        <?php echo $cost;?>
+    </div>
+<?php
     ;
 }
 ;
 if (isset($_POST['remove_from_cart'])) {
-    $name = $_POST['name'];
     $prod_id = $_POST['prod_id'];
     $select_cart = $conn->prepare("SELECT * FROM `cart` WHERE product_id = '$prod_id' AND user_id = '$user_id'");
     $select_cart->execute();
@@ -51,12 +55,7 @@ if (isset($_POST['remove_from_cart'])) {
 </head>
 
 <body>
-    <?php
 
-    ?>
-    <div>Tổng tiền:
-        <?php echo $cost;?>
-    </div>
 </body>
 
 </html>

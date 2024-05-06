@@ -27,8 +27,9 @@ if(isset($_POST['add_to_cart']))
     $name = $_POST['name'];
     $price = $_POST['price'];
     $product_id = $_POST['id'];
-    $conn->exec("INSERT INTO `cart` (user_id,product_name,product_id,price,quantity) 
-    VALUES ('$user_id','$name','$product_id','$price','$quantity')");
+    $image = $_POST['image'];
+    $conn->exec("INSERT INTO `cart` (user_id,product_name,product_id,price,quantity,image) 
+    VALUES ('$user_id','$name','$product_id','$price','$quantity','$image')");
     $message[] = 'Đã thêm sản phẩm vào giỏ !';
 };  
 ?>
