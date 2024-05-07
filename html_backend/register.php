@@ -14,7 +14,8 @@ if (isset($_POST['submit'])) {
 
     if ($Execquery->rowCount() > 0) {
         $message[] = "Tài khoản đã tồn tại!";
-    } else//add account of user into database
+    } 
+    else//add account of user into database
     {
         $query->exec("INSERT INTO `account_guest`(id, name, password, email) 
         VALUES(NULL, '$name', '$pass', '$email')");
@@ -33,7 +34,7 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="style.css?<?= filemtime("style.css") ?>" rel="stylesheet" type="text/css" />
+
     <title>Register</title>
 </head>
 

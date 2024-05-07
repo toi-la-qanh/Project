@@ -15,8 +15,10 @@ if ($get_cart->rowCount() > 0) {
             <img src="images/<?php echo $cart['image']; ?>" alt="">
             <div class="name"><?php echo $cart['product_name']; ?></div>
             <div class="price"><?php echo $cart['price']; ?> đồng</div>
-            <div class="quantity">Số lượng: <?php echo $cart['quantity']; ?>
+            <div class="quantity">Số lượng:
+            <input type="number" min="<?php echo $cart['quantity']; ?>" name="quantity" value="1" max="">
             </div>
+            
             <input type="hidden" name="prod_id" value="<?php echo $cart['product_id']; ?>">
             <input type="hidden" name="image" value="<?php echo $cart['image']; ?>">
             <input type="hidden" name="name" value="<?php echo $cart['product_name']; ?>">

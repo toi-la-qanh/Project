@@ -1,4 +1,4 @@
-<?php 
+<?php
 include "database/sql_connection.php";
 session_start();
 $user_id = $_SESSION['user_id'];
@@ -23,6 +23,7 @@ $user_id = $_SESSION['user_id'];
         <ul>
             <li><a class="active" href="user.php">Tài khoản</a></li>
             <li><a href="cart.php">Giỏ hàng</a></li>
+            <li><a href="product.php">Sản phẩm</a></li>
         </ul>
     </nav>
 
@@ -50,10 +51,11 @@ $user_id = $_SESSION['user_id'];
     </div>
     <div class="container">
         <div class="products">
-            <?php 
+            <?php
                 include "product.php";
             ?>
         </div>
     </div>
 </body>
+
 </html>
