@@ -43,21 +43,8 @@ if (isset($_POST['remove_from_cart'])) {
         $conn->exec("DELETE FROM `cart` WHERE product_id = '$prod_id' AND user_id = '$user_id'");
         $message[] = 'Đã xoá sản phẩm khỏi giỏ hàng!';
     }
-}
-;
+};
+    // Prevent form resubmission...
+    header('location: index.php?page=cart');
+    exit;
 ?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giỏ hàng</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-
-</body>
-
-</html>

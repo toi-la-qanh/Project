@@ -52,7 +52,23 @@ $user_id = $_SESSION['user_id'];
     <div class="container">
         <div class="products">
             <?php
-                include "product.php";
+            $db = new SQLConnect();
+            $conn = $db->connect();
+            $get_product = $conn->prepare("SELECT * FROM `product` LIMIT 4");
+            $get_product->execute();
+            if ($get_product->rowCount() > 0) {
+                while ($product = $get_product->fetch()) {
+                    ?>
+                    <form method="post" class="box" action="">
+                        <img src="images/<?php echo $product['image']; ?>" alt="" width="200" height="200">
+                        <div class="name"><?php echo $product['name']; ?></div>
+                        <div class="price"><?php echo $product['price']; ?></div>
+                    </form>
+                    <?php
+                }
+                ;
+            }
+            ;
             ?>
         </div>
     </div>

@@ -90,7 +90,25 @@ CREATE TABLE `product` (
 
 INSERT INTO `product` (`id`, `price`, `name`, `quantity`, `image`) VALUES
 ('001', 10000, 'SHOE 1', 3, 'shoe1.jpg'),
-('002', 20000, 'SHOE 2', 5, 'shoe2.jpg');
+('002', 20000, 'SHOE 2', 5, 'shoe2.jpg'),
+('003', 15000, 'SHOE 3', 8, 'shoe3.jpg'),
+('004', 18000, 'SHOE 4', 4, 'shoe4.jpg'),
+('005', 22000, 'SHOE 5', 6, 'shoe5.jpg'),
+('006', 25000, 'SHOE 6', 7, 'shoe6.jpg'),
+('007', 19000, 'SHOE 7', 9, 'shoe7.jpg'),
+('008', 23000, 'SHOE 8', 3, 'shoe8.jpg'),
+('009', 28000, 'SHOE 9', 5, 'shoe9.jpg'),
+('010', 21000, 'SHOE 10', 10, 'shoe10.jpg'),
+('011', 27000, 'SHOE 11', 6, 'shoe11.jpg'),
+('012', 30000, 'SHOE 12', 8, 'shoe12.jpg'),
+('013', 25000, 'SHOE 13', 5, 'shoe13.jpg'),
+('014', 28000, 'SHOE 14', 7, 'shoe14.jpg'),
+('015', 32000, 'SHOE 15', 9, 'shoe15.jpg'),
+('016', 23000, 'SHOE 16', 4, 'shoe16.jpg'),
+('017', 35000, 'SHOE 17', 6, 'shoe17.jpg'),
+('018', 27000, 'SHOE 18', 8, 'shoe18.jpg'),
+('019', 29000, 'SHOE 19', 5, 'shoe19.jpg'),
+('020', 33000, 'SHOE 20', 7, 'shoe20.jpg');
 
 --
 -- Chỉ mục cho các bảng đã đổ
