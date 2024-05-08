@@ -25,24 +25,7 @@ if (isset($_POST['add_to_cart'])) {
     }
 }
 ;
-if (isset($_POST['search'])) {
-
-       $name = $_POST['search'];
-       $searchQuery = $conn->prepare("SELECT name FROM `product` WHERE name LIKE '%$name%' LIMIT 5");
-       $searchQuery->execute();
-       echo '
-    <ul>
-       ';
-       while ($result = $searchQuery->fetch()) {
 ?>
-       <li onclick='fill("<?php echo $result['name']; ?>")'>
-       <a>
-           <?php echo $result['name']; ?>
-       </li></a>
-       <?php
-    }}
-?>
-</ul>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,11 +33,19 @@ if (isset($_POST['search'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="product.css?v=<?php echo time(); ?>"  type="text/css" />
+    <link rel="stylesheet" href="product.css?v=<?php echo time(); ?>" type="text/css" />
     <title>Product</title>
 </head>
 
 <body>
+    <nav>
+        <label ><a href="index.php">Trang chủ</a></label>
+        <ul>
+            <li><a href="user.php">Tài khoản</a></li>
+            <li><a href="cart.php">Giỏ hàng</a></li>
+            <li><a class="active" href="product.php">Sản phẩm</a></li>
+        </ul>
+    </nav>
     <?php
     if (isset($message)) {
         foreach ($message as $msg) {
@@ -64,7 +55,12 @@ if (isset($_POST['search'])) {
 
     ?>
     <div class="search">
-        <input type="text" name="" id="find" placeholder="Tìm kiếm gì đó...." onkeyup="search()">
+        <form action="search.php" method="post">
+            <input class="box" type="text" name="key" required placeholder="Tìm kiếm gì đó....">
+            <button type="submit" name="search">
+                <i class="fa fa-search" style="font-size: 18px;"></i>
+            </button>
+        </form>
     </div>
     <div class="product">
         <?php
@@ -89,10 +85,6 @@ if (isset($_POST['search'])) {
         }
         ; ?>
     </div>
-
-    <script type="text/javascript">
-        <?php include "script.js"; ?>
-    </script>
 </body>
 
 </html>

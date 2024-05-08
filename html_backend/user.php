@@ -8,7 +8,8 @@ $query = $conn->prepare("SELECT name, email FROM `account_guest` WHERE id = '$us
 $query->execute();
 if ($query->rowCount() > 0) {
     $user = $query->fetch();
-};
+}
+;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +22,14 @@ if ($query->rowCount() > 0) {
 </head>
 
 <body>
+    <nav>
+        <label ><a href="index.php">Trang chủ</a></label>
+        <ul>
+            <li><a class="active" href="user.php">Tài khoản</a></li>
+            <li><a href="cart.php">Giỏ hàng</a></li>
+            <li><a href="product.php">Sản phẩm</a></li>
+        </ul>
+    </nav>
     <div class="user-profile">
         <p> Tên:<span>
                 <?php echo $user['name']; ?>

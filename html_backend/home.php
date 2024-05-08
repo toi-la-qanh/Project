@@ -15,13 +15,9 @@ $user_id = $_SESSION['user_id'];
 <body>
 
     <nav>
-        <input type="checkbox" id="check">
-        <label for="check">
-            <i class="fas fa-bars"></i>
-        </label>
-        <label class="logo">Trang chủ</label>
+        <label ><a href="index.php">Trang chủ</a></label>
         <ul>
-            <li><a class="active" href="user.php">Tài khoản</a></li>
+            <li><a href="user.php">Tài khoản</a></li>
             <li><a href="cart.php">Giỏ hàng</a></li>
             <li><a href="product.php">Sản phẩm</a></li>
         </ul>
