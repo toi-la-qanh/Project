@@ -14,7 +14,8 @@ if (isset($_POST['add_to_cart'])) {
     $image = $_POST['image'];
 
     $select_cart = $conn->prepare("SELECT * FROM `cart` WHERE product_id = '$product_id'
-    AND user_id = '$user_id'");
+    AND user_id = '$user_id' AND product_name = '$name'");
+    $select_cart->execute();
     if ($select_cart->rowCount() > 0) {
         $message[] = 'Sản phẩm đã có trong giỏ hàng!';
     } else {
@@ -24,13 +25,32 @@ if (isset($_POST['add_to_cart'])) {
     }
 }
 ;
+if (isset($_POST['search'])) {
+
+       $name = $_POST['search'];
+       $searchQuery = $conn->prepare("SELECT name FROM `product` WHERE name LIKE '%$name%' LIMIT 5");
+       $searchQuery->execute();
+       echo '
+    <ul>
+       ';
+       while ($result = $searchQuery->fetch()) {
 ?>
+       <li onclick='fill("<?php echo $result['name']; ?>")'>
+       <a>
+           <?php echo $result['name']; ?>
+       </li></a>
+       <?php
+    }}
+?>
+</ul>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="product.css?v=<?php echo time(); ?>"  type="text/css" />
     <title>Product</title>
 </head>
 
@@ -69,22 +89,9 @@ if (isset($_POST['add_to_cart'])) {
         }
         ; ?>
     </div>
+
     <script type="text/javascript">
-        function search() {
-            let filter = document.getElementById('find').value.toUpperCase();
-            let item = document.querySelectorAll(".product");
-            let l = document.getElementsByClassName("name");
-            for (var i = 0; i <= l.length; i++) {
-                let a = item[i].getElementsByClassName("name")[0];
-                let value = a.innerHTML || a.innerText || a.textContent;
-                if (value.toUpperCase().indexOf(filter) > -1) {
-                    item[i].style.display = "";
-                }
-                else {
-                    item[i].style.display = "none";
-                }
-            }
-        }
+        <?php include "script.js"; ?>
     </script>
 </body>
 

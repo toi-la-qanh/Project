@@ -27,7 +27,7 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="style.css?<?= filemtime("style.css") ?>" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="login.css?v=<?php echo time(); ?>"  type="text/css" />
     <title>Login</title>
 </head>
 
@@ -47,16 +47,16 @@ if (isset($_POST['submit'])) {
         <div class="form-container sign-in">
             <form action="" method="post">
                 <h1>Đăng nhập</h1>
-                <input type="email" name="email" required placeholder="Nhập tài khoản hoặc email" class="box">
+                <input type="email" name="email" required placeholder="Nhập email" class="box">
                 <input type="password" name="password" required placeholder="Nhập mật khẩu" class="box">
-                <input type="submit" name="submit" class="btn" value="Đăng nhập">
+                <button type="submit" name="submit" class="btn" value="">Đăng nhập</button>
             </form>
         </div>
-        <div class="toggle-container">
-            <div class="toggle">
+        <div class="toggle">
+            <div class="toggle-container-right">
                 <div class="toggle-panel toggle-right">
                     <h1>Hoặc đăng ký</h1>
-                    <p>Nếu bạn chưa có tài khoản</p>
+                    <p>Đăng ký tài khoản để trải nghiệm tất cả tính năng mua sắm</p>
                     <button class="hidden" id="register">
                         <a href="register.php">Đăng ký</a>
                     </button>
