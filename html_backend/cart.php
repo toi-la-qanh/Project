@@ -15,8 +15,14 @@ if (isset($_POST['remove_from_cart'])) {
     }
 }
 ;
-// Prevent form resubmission...
-
+if(isset($_POST['update_cart']))
+{
+    $quantity = $_POST['quantity'];
+    $prod_id = $_POST['prod_id'];
+    $conn->exec("UPDATE `cart` SET quantity = '$quantity' WHERE user_id = '$user_id' AND
+    product_id = '$prod_id'");
+    $message[] = 'Đã cập nhật giỏ hàng!';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +31,83 @@ if (isset($_POST['remove_from_cart'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giỏ hàng</title>
+    <style>
+                body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .cart {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .box {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .box img {
+            width: 100px;
+            height: auto;
+            margin-right: 20px;
+        }
+
+        .name {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .quantity input[type="number"] {
+            width: 50px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: #fff;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
@@ -53,11 +136,13 @@ if (isset($_POST['remove_from_cart'])) {
                 $cost += $cart['price'] * $cart['quantity'];
                 ?>
                 <form method="post" class="box" action="">
-                    <img src="images/<?php echo $cart['image']; ?>" alt="">
+                    <img src="images/<?php echo $cart['image']; ?>" alt="" width="200" height="200">
                     <div class="name"><?php echo $cart['product_name']; ?></div>
                     <div class="price"><?php echo $cart['price']; ?> đồng</div>
                     <div class="quantity">Số lượng:
-                        <input type="number" min="<?php echo $cart['quantity']; ?>" name="quantity" value="1" max="">
+                        <input type="number" min="1" value="<?php echo $cart['quantity']; ?>" 
+                        name="quantity">
+                        <input type="submit" name="update_cart" value="Cập nhật" class="option-btn">
                     </div>
                     <input type="hidden" name="prod_id" value="<?php echo $cart['product_id']; ?>">
                     <input type="hidden" name="image" value="<?php echo $cart['image']; ?>">
