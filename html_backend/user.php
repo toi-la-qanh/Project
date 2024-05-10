@@ -4,15 +4,34 @@ session_start();
 $db = new SQLConnect();
 $conn = $db->connect();
 $user_id = $_SESSION['user_id'];
-$query = $conn->prepare("SELECT name, email FROM `account_guest` WHERE id = '$user_id'");
+$query = $conn->prepare("SELECT * FROM `account_guest` WHERE id = '$user_id'");
 $query->execute();
 if ($query->rowCount() > 0) {
     $user = $query->fetch();
 }
 ;
+if (isset($_POST['edit_name'])) {
+    $name = $_POST['user_name'];
+    $conn->exec("UPDATE `account_guest` SET name ='$name' WHERE id = '$user_id'");
+    header("location:user.php");
+}
+;
+if (isset($_POST['edit_address'])) {
+    $address = $_POST['user_address'];
+    $conn->exec("UPDATE `account_guest` SET address ='$address' WHERE id = '$user_id'");
+    header("location:user.php");
+}
+;
+if (isset($_POST['edit_phone'])) {
+    $phone = $_POST['user_phone'];
+    $conn->exec("UPDATE `account_guest` SET phone ='$phone' WHERE id = '$user_id'");
+    header("location:user.php");
+}
+;
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -87,55 +106,59 @@ if ($query->rowCount() > 0) {
         }
     </style>
 </head>
+
 <body>
     <header>
         <h1>Tài Khoản Của Tôi</h1>
         <nav>
-     
-            <label ><a href="index.php">Trang chủ</a></label>
-         <ul>
-            <li><a href="cart.php">Giỏ hàng</a></li>
-            <li><a href="product.php">Sản phẩm</a></li>
-        </ul>
-  
+
+            <label><a href="index.php">Trang chủ</a></label>
+            <ul>
+                <li><a href="cart.php">Giỏ hàng</a></li>
+                <li><a href="product.php">Sản phẩm</a></li>
+            </ul>
+
         </nav>
     </header>
     <div class="user-profile">
-        <p> Tên:<span>
-                <?php echo htmlspecialchars($user['name']); ?>
-            </span>
-            <button class="edit-button">✎</button>
+        <form action="" method="post" class="box">
+            <p> Tên:<span>
+                    <input type="text" name="user_name" class="box" value="<?php echo $user['name']; ?>">
+                </span>
+                <button type="submit" name="edit_name" class="edit-button">✎</button>
             </p>
-        <p> Email:<span>
-                <?php echo htmlspecialchars($user['email']); ?>
-            </span>
-            <button class="edit-button">✎</button>
+            <p> Email:
+                <span>
+                    <?php echo $user['email']; ?>
+                </span>
             </p>
-        <p> Địa chỉ:<span>
-                <?php echo htmlspecialchars($user['address']); ?>
-            </span>
-            <button class="edit-button">✎</button>
-        </p>
-        <p> Số điện thoại:<span>
-                <?php echo htmlspecialchars($user['phone']); ?>
-            </span>
-            <button class="edit-button">✎</button>
-        </p>
+            <p> Địa chỉ:<span>
+                    <input type="text" name="user_address" class="box" value="<?php echo $user['address']; ?>">
+                </span>
+                <button type="submit" name="edit_address" class="edit-button">✎</button>
+            </p>
+            <p> Số điện thoại:<span>
+                    <input type="text" name="user_phone" class="box" value="<?php echo $user['phone']; ?>">
+                </span>
+                <button type="submit" name="edit_phone" class="edit-button">✎</button>
+            </p>
+        </form>
     </div>
 </body>
 <footer>
-        <div class="footer-item">
-            <div class="img-footer">
-               </div>
-            <div class="social-footer">
-                <li><a target="_blank" href="https://www.facebook.com/">
-                        <i class="fa fa-facebook-square" aria-hidden="true"></i>
-                    </a></li>
-                <li><a target="_blank" href="https://github.com/">
-                        <i class="fa fa-github-square" aria-hidden="true"></i>
-                    </a></li>
-
-            </div>
+    <div class="footer-item">
+        <div class="img-footer">
         </div>
-    </footer>
+        <div class="social-footer">
+            <li><a target="_blank" href="https://www.facebook.com/">
+                    <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                </a></li>
+            <li><a target="_blank" href="https://github.com/">
+                    <i class="fa fa-github-square" aria-hidden="true"></i>
+                </a></li>
+
+        </div>
+    </div>
+</footer>
+
 </html> <img src="img/logo.png" alt="" />

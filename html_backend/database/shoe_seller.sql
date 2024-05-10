@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 07, 2024 lúc 02:01 PM
+-- Thời gian đã tạo: Th5 10, 2024 lúc 02:40 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -31,18 +31,20 @@ CREATE TABLE `account_guest` (
   `id` int(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL
+  `password` varchar(100) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `phone` varchar(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `account_guest`
 --
 
-INSERT INTO `account_guest` (`id`, `email`, `name`, `password`) VALUES
-(2, 'qanh123@gmail.com', 'qanh123', '1'),
-(4, 'qanh@gmail.com', 'qanh', '1'),
-(5, 'bac@gmail.com', 'bac', '1'),
-(6, 'man@gmail.com', 'man', '1');
+INSERT INTO `account_guest` (`id`, `email`, `name`, `password`, `address`, `phone`) VALUES
+(2, 'qanh123@gmail.com', 'qanh123', '1', '', ''),
+(4, 'qanh@gmail.com', 'qanh', '1', '', ''),
+(5, 'bac@gmail.com', 'bac', '1', '', ''),
+(6, 'man@gmail.com', 'man', '1', '', '');
 
 -- --------------------------------------------------------
 
