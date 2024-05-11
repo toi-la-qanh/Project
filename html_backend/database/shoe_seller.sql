@@ -58,19 +58,18 @@ CREATE TABLE `cart` (
   `product_id` varchar(100) NOT NULL,
   `price` int(100) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `image` varchar(100) NOT NULL,
-  `max_quantity` int(100) NOT NULL
+  `image` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `cart`
 --
 
-INSERT INTO `cart` (`user_id`, `product_name`, `product_id`, `price`, `quantity`, `image`, `max_quantity`) VALUES
-(0, 'SHOE 2', '002', 20000, 1, 'shoe2.jpg', 0),
-(2, 'SHOE 1', '001', 10000, 1, 'shoe1.jpg', 0),
-(2, 'SHOE 2', '002', 20000, 1, 'shoe2.jpg', 0),
-(5, 'SHOE 2', '002', 20000, 1, 'shoe2.jpg', 0);
+INSERT INTO `cart` (`user_id`, `product_name`, `product_id`, `price`, `quantity`, `image`) VALUES
+(0, 'SHOE 2', '002', 20000, 1, 'shoe2.jpg'),
+(2, 'SHOE 1', '001', 10000, 1, 'shoe1.jpg'),
+(2, 'SHOE 2', '002', 20000, 1, 'shoe2.jpg'),
+(5, 'SHOE 2', '002', 20000, 1, 'shoe2.jpg');
 
 -- --------------------------------------------------------
 

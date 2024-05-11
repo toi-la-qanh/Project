@@ -47,7 +47,7 @@ body{
 }
 
 .container button{
-    background-color: #512da8;
+    background-color: #6c14d0;
     color: #fff;
     font-size: 12px;
     padding: 10px 45px;
@@ -63,6 +63,7 @@ body{
 .container button.hidden{
     background-color: transparent;
     border-color: #fff;
+    font-weight: bold;
 }
 
 .container form{
@@ -127,9 +128,9 @@ body{
 }
 
 .toggle{
-    background-color: #512da8;
+    background-color: #6c14d0;
     height: 100%;
-    background: linear-gradient(to right, #5c6bc0, #512da8);
+    background: linear-gradient(to right, #6c14d0, #c72092);
     color: #fff;
     left: -100%;
     height: 100%;

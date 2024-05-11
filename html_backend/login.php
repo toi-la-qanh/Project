@@ -7,7 +7,7 @@ if (isset($_POST['submit'])) {
 
     $database = new SQLConnect();
     $query = $database->connect();
-    $Execquery = $query->prepare("SELECT * FROM `account_guest` WHERE email = '$email'");
+    $Execquery = $query->prepare("SELECT * FROM `account_guest` WHERE email = '$email' AND password = '$pass'");
     $Execquery->execute();
 
     if ($Execquery->rowCount() > 0) {

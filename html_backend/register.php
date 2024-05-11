@@ -4,7 +4,6 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $name = $_POST['name'];
     $pass = $_POST['password'];
-    $cpass = $_POST['confirm_password'];
 
     $db = new SQLConnect();
     $query = $db->connect();
@@ -24,7 +23,6 @@ if (isset($_POST['submit'])) {
     }
 
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -56,7 +54,6 @@ if (isset($_POST['submit'])) {
                 <h1>Tạo tài khoản</h1>
                 <input type="text" name="name" required placeholder="Nhập tài khoản" class="box">
                 <input type="password" name="password" required placeholder="Nhập mật khẩu" class="box">
-                <input type="password" name="confirm_password" required placeholder="Xác nhận mật khẩu" class="box">
                 <input type="email" name="email" required placeholder="Nhập email" class="box">
                 <button type="submit" name="submit" class="btn" value="">Đăng ký</button>   
             </form>
