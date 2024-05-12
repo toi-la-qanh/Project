@@ -11,11 +11,10 @@ $user_id = $_SESSION['user_id'];
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop bán giày đẹp nhất VN</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" href="images/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+/>
 </head>
 
 <body>
@@ -51,7 +50,7 @@ $user_id = $_SESSION['user_id'];
                     </p>
                 </div>
                 <div class="main_image">
-                    <img src="images/shoes.png">
+                    <img src="images/shoes.png" width="300" height="500">
                 </div>
             </div>
             <div class="social_icon">
@@ -85,18 +84,16 @@ $user_id = $_SESSION['user_id'];
                 while ($product = $get_product->fetch()) {
                     ?>
                     <form method="post" class="box" action="">
-                    <div class="card">
-                        
+                        <div class="card">
                             <div class="image">
-                                <img src="images/<?php echo $product['image'];?>" alt="">
+                                <img src="images/<?php echo $product['image']; ?>" alt="" width="300" height="170">
                             </div>
                             <div class="products_text">
-                                <h2><?php echo $product['name'];?></h2>
+                                <h2><?php echo $product['name']; ?></h2>
                                 <h3><?php echo $product['price']; ?></h3>
                                 <a href="product.php" class="btn">MUA</a>
                             </div>
-                        
-                    </div>
+                        </div>
                     </form>
                     <?php
                 }
@@ -107,7 +104,7 @@ $user_id = $_SESSION['user_id'];
         </div>
 
     </div>
-   
+
 </body>
 
 </html>

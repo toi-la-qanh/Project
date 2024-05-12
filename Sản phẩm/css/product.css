@@ -23,14 +23,6 @@ html{
     background: linear-gradient(to top, #c72092 , #6c14d0);
 }
 
-section{
-    width: 100%;
-    height: 100vh;
-    background-image: url(image/bg1.png);
-    background-size: cover;
-    background-position: center;
-}
-
 nav{
     display: flex;
     align-items: center;
@@ -50,7 +42,7 @@ nav .logo{
     margin: 5px 0;
     cursor: pointer;
     position: relative;
-    left: -4%;
+    left: -1%;
 }
 
 nav .logo span{
@@ -64,7 +56,7 @@ nav ul{
 
 nav ul li{
     display: inline-block;
-    margin: 5px 15px;
+    margin: 4px 15px;
 }
 
 nav ul li a{
@@ -77,17 +69,6 @@ nav ul li a:hover{
     color: #c72092;
 }
 
-nav .icons i{
-    margin: 0 4px;
-    cursor: pointer;
-    font-size: 18px;
-    transition: 0.3s;
-}
-
-nav .icons i:hover{
-    color: #c72092;
-}
-
 /*Products*/
 
 .products{
@@ -97,8 +78,8 @@ nav .icons i:hover{
 }
 
 .products h1{
-    margin: 35px 0;
-    font-size: 60px;
+    margin: 60px 0;
+    font-size: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -216,37 +197,37 @@ nav .icons i:hover{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.box {
+.cart .box {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
 }
 
-.box img {
+.cart .box img {
     width: 100px;
     height: auto;
     margin-right: 20px;
 }
 
-.name {
+.cart .name {
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
-.price {
+.cart .price {
     color: #007bff;
     margin-bottom: 10px;
 }
 
-.quantity input[type="number"] {
-
+.cart .quantity-control input[type="number"] {
     border: 1px solid #ccc;
     border-radius: 3px;
-    max-width: 4px;
+    max-width: 70px;
+    text-align: end;
 }
 
-.btn {
+.cart .btn {
     background-color: #512da8;
     color: #fff;
     padding: 5px 10px;
@@ -255,29 +236,29 @@ nav .icons i:hover{
     cursor: pointer;
 }
 
-table {
+.cart table {
     width: 100%;
     border-collapse: collapse;
 }
 
-td {
-    padding: 8px;
+.cart td {
+    padding: 30px;
     border-bottom: 1px solid #ddd;
-    text-align: left;
+    text-align: left -30%;
 }
-th {
-    background-color: #ff7200;
+.cart th {
+    background-color: #c72092;
 }
-td:last-child {
+.cart td:last-child {
     text-align: right;
 }
 
-.quantity-control {
+.cart .quantity-control {
     display: flex;
     align-items: center;
 }
 
-.quantity-control button {
+.cart .quantity-control button {
     cursor: pointer;
     background-color: transparent;
     border: none;
@@ -286,42 +267,73 @@ td:last-child {
     font-size: 1em;
 }
 
-.btn-remove {
+.cart .btn-remove {
     font-size: 12px;
     padding: 5px 10px;
 }
-.total-price{
+.cart .total-price{
     display:flex;
-}
-.total-price table{
-    border-top: 3px solid #ff523b;
-    width: 100%;
-    max-width: 282px;
-    
+    justify-content:flex-end;
 }
 
+.cart .total-price table{
+    border-top: 3px solid #ff523b;
+    width: 100%;
+    max-width: 300px;
+}
+/* thêm cái search(?)*/
+.search {
+    width: max-content;
+    margin-left: 0;
+    display: flex;
+    align-items: center;
+    width: 300px;
+}
+
+.search input[type="text"] {
+    font-size: 16px;
+    margin-left: 14px;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.search form {
+display: flex;
+align-items: center;
+}
+.search input.box {
+flex: 1;
+margin-right: 10px;
+}
+.search button{
+    background-color: #fff;
+    border: 1px solid #fff;
+}
 /*user*/
 
 .user-profile {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 80px auto;
+    margin: 20px auto;
     max-width: 400px;
     padding: 100px;
     display: flex;
     flex-direction: column;
+    align-items: center
 }
 
 .user-profile p {
-    margin: 10px 0;
+    margin: 8px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    text-align: left;
 }
 
 .user-profile span {
-    font-weight: 10px;
+    font-weight: fixed;
 }
 
 .edit-button {
@@ -338,4 +350,47 @@ td:last-child {
 
 .edit-button:hover {
     background-color: #45a049;
+}
+.user-profile table {
+    width: 100%;
+}
+
+.user-profile td {
+    padding: 8px;
+    border-right: 10px;
+}
+
+.user-profile .box {
+    width: calc(100% - 40px);
+    padding: 8px;
+    margin: 10px auto;  
+}
+
+.user-profile .edit-button {
+    background-color: #ddd;
+    border-right: 10px;
+    cursor: pointer;
+}
+
+.user-profile .edit-button:hover {
+    background-color: #bbb;
+}
+
+.user-profile .flex {
+    display: flex;
+   justify-content: center;
+}
+
+.user-profile .flex .delete-btn {
+    background-color: #c72092;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+}
+
+.user-profile .flex .delete-btn:hover {
+    background-color: #df3727;
 }

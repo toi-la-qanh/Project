@@ -34,33 +34,30 @@ if (isset($_POST['add_to_cart'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sản phẩm</title>
-    <link rel="stylesheet" href="product.css">
-    <link rel="shortcut icon" href="image/logo.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/product.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 </head>
 
 <body>
-        <nav>
-            <div class="logo">
-                <h1>Gi<span>à</span>y</h1>
-            </div>
+    <nav>
+        <div class="logo">
+            <h1>Gi<span>à</span>y</h1>
+        </div>
+        <form action="search.php" method="post">
             <div class="search">
-                <form action="search.php" method="post">
-                    <input class="box" type="text" name="key" required placeholder="Tìm kiếm gì đó....">
-                    <button type="submit" name="search">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </form>
+                <input class="box" type="text" name="key" required placeholder="Tìm kiếm gì đó....">
+                <button type="submit" name="search"><i class="fas fa-search"></i></button>
             </div>
-            <ul>
-                <li><a href="home.php">Trang chủ</a></li>
-                <li><a href="product.php">Sản phẩm</a></li>
-                <li><a href="user.php">Tài khoản</a></li>
-                <li><a href="cart.php">Giỏ hàng</a></li>
-            </ul>
-        </nav>
+        </form>
+        <ul>
+            <li><a href="home.php">Trang chủ</a></li>
+            <li><a href="product.php">Sản phẩm</a></li>
+            <li><a href="user.php">Tài khoản</a></li>
+            <li><a href="cart.php">Giỏ hàng</a></li>
+        </ul>
+    </nav>
     <?php
     if (isset($message)) {
         foreach ($message as $msg) {
@@ -76,10 +73,9 @@ if (isset($_POST['add_to_cart'])) {
                 while ($product = $get_product->fetch()) {
                     ?>
                     <form method="post" class="box" action="">
-                    <div class="card">
-                        
+                        <div class="card">
                             <div class="image">
-                                <img src="images/<?php echo $product['image']; ?>" alt="">
+                                <img src="images/<?php echo $product['image']; ?>" alt="" width="200" height="170">
                             </div>
                             <div class="products_text">
                                 <h2><?php echo $product['name']; ?></h2>
@@ -93,8 +89,8 @@ if (isset($_POST['add_to_cart'])) {
                                 <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
                                 <input type="submit" value="Thêm vào giỏ hàng" name="add_to_cart" class="btn">
                             </div>
-                        
-                    </div>
+
+                        </div>
                     </form>
                     <?php
                 }

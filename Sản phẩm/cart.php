@@ -31,11 +31,8 @@ if (isset($_POST['update_cart'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giỏ hàng</title>
-    <link rel="stylesheet" href="product.css">
-    <link rel="shortcut icon" href="images/logo.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/product.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 </head>
 
 <body>
@@ -43,14 +40,12 @@ if (isset($_POST['update_cart'])) {
         <div class="logo">
             <h1>Gi<span>à</span>y</h1>
         </div>
-        <div class="search">
-            <form action="search.php" method="post">
+        <form action="search.php" method="post">
+            <div class="search">
                 <input class="box" type="text" name="key" required placeholder="Tìm kiếm gì đó....">
-                <button type="submit" name="search">
-                    <i class="fa fa-search"></i>
-                </button>
-            </form>
-        </div>
+                <button type="submit" name="search"><i class="fas fa-search"></i></button>
+            </div>
+        </form>
         <ul>
             <li><a href="home.php">Trang chủ</a></li>
             <li><a href="product.php">Sản phẩm</a></li>
@@ -67,12 +62,13 @@ if (isset($_POST['update_cart'])) {
     ?>
     <div class="cart">
         <table>
-        <thead>
+            <thead>
                 <tr>
                     <th>Sản phẩm</th>
                     <th>Đơn giá</th>
                     <th>Số lượng</th>
-                    <th>Giá tiền</th>
+                    <th></th>
+                    <th>Thành tiền</th>
                 </tr>
             </thead>
             <tbody>
@@ -84,52 +80,48 @@ if (isset($_POST['update_cart'])) {
                     while ($cart = $get_cart->fetch()) {
                         $cost += $cart['price'] * $cart['quantity'];
                         ?>
-                        <form action="" method="post" class="box">
-                            <tr>
-
-                                <td>
-                                    <img src="images/<?php echo $cart['image']; ?>" alt="<?php echo $cart['product_name']; ?>"
-                                        width="100" height="100">
-                                    <br>
-                                    <?php echo $cart['product_name']; ?>
-                                </td>
-                                <td><?php echo $cart['price']; ?> đồng</td>
+                        <tr>
+                            <td>
+                                <img src="images/<?php echo $cart['image']; ?>" alt="<?php echo $cart['product_name']; ?>"
+                                    width="100" height="100"><br>
+                                <?php echo $cart['product_name']; ?>
+                            </td>
+                            <td><?php echo $cart['price']; ?> đồng</td>
+                            <form action="" method="post" class="box">
                                 <td>
                                     <div class="quantity-control">
                                         <input type="number" value="<?php echo $cart['quantity']; ?>" name="quantity">
+                                        <input type="hidden" name="prod_id" value="<?php echo $cart['product_id']; ?>">
+                                        <input type="hidden" name="image" value="<?php echo $cart['image']; ?>">
+                                        <input type="hidden" name="name" value="<?php echo $cart['product_name']; ?>">
+                                        <input type="hidden" name="price" value="<?php echo $cart['price']; ?>">
                                         <input type="submit" name="update_cart" value="Cập nhật" class="option-btn">
                                     </div>
+                                </td>
+                                <td>
                                     <input type="hidden" name="prod_id" value="<?php echo $cart['product_id']; ?>">
-                                    <input type="hidden" name="image" value="<?php echo $cart['image']; ?>">
-                                    <input type="hidden" name="name" value="<?php echo $cart['product_name']; ?>">
-                                    <input type="hidden" name="price" value="<?php echo $cart['price']; ?>">
+                                    <input type="submit" value="Xoá khỏi giỏ hàng" name="remove_from_cart" class="btn">
                                 </td>
-
-                                <td><?php echo $sub_total = number_format($cart['price'] * $cart['quantity']); ?> đồng
-                                    
-                                </td>
-                                <td><input type="submit" value="Xoá khỏi giỏ hàng" name="remove_from_cart" class="btn"></td>
-                            </tr>
-                        </form>
+                            </form>
+                            <td><?php echo number_format($cart['price'] * $cart['quantity']); ?> đồng</td>
+                        </tr>
                         <?php
                     }
-                    ?>
-                    <?php
-                    ?>
-
-                    <?php
                 } else {
                     $message[] = "Chưa có sản phẩm nào trong giỏ!";
                 }
                 ?>
             </tbody>
         </table>
+
         </form>
 
         <div class="total-price">
             <table>
-                <td><strong>Tổng tiền: </strong></td>
-                <td><?php echo $cost; ?> đồng</td>
+                <tr>
+                    <td><strong>Tổng tiền:</strong></td>
+                    <td><?php echo $cost; ?> đồng</td>
+                </tr>
             </table>
         </div>
 </body>
