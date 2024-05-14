@@ -90,7 +90,7 @@ $user_id = $_SESSION['user_id'];
                             </div>
                             <div class="products_text">
                                 <h2><?php echo $product['name']; ?></h2>
-                                <h3><?php echo $product['price']; ?></h3>
+                                <h3><?php echo number_format($product['price']); ?> $</h3>
                                 <a href="product.php" class="btn">MUA</a>
                             </div>
                         </div>

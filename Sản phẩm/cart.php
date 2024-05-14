@@ -80,31 +80,33 @@ if (isset($_POST['update_cart'])) {
                     while ($cart = $get_cart->fetch()) {
                         $cost += $cart['price'] * $cart['quantity'];
                         ?>
-                        <tr>
-                            <td>
-                                <img src="images/<?php echo $cart['image']; ?>" alt="<?php echo $cart['product_name']; ?>"
-                                    width="100" height="100"><br>
-                                <?php echo $cart['product_name']; ?>
-                            </td>
-                            <td><?php echo $cart['price']; ?> đồng</td>
-                            <form action="" method="post" class="box">
+                        <form action="" method="post" class="box">
+                            <tr>
+                                <td>
+                                    <img src="images/<?php echo $cart['image']; ?>" alt="<?php echo $cart['product_name']; ?>"
+                                        width="100" height="100"><br>
+                                    <?php echo $cart['product_name']; ?>
+                                </td>
+                                <td><?php echo number_format($cart['price']); ?> $</td>
                                 <td>
                                     <div class="quantity-control">
                                         <input type="number" value="<?php echo $cart['quantity']; ?>" name="quantity">
-                                        <input type="hidden" name="prod_id" value="<?php echo $cart['product_id']; ?>">
+                                        <input type="submit" name="update_cart" value="Cập nhật" class="btn">
+                                    </div>
+                                        
+                                </td>
+                                <input type="hidden" name="prod_id" value="<?php echo $cart['product_id']; ?>">
                                         <input type="hidden" name="image" value="<?php echo $cart['image']; ?>">
                                         <input type="hidden" name="name" value="<?php echo $cart['product_name']; ?>">
                                         <input type="hidden" name="price" value="<?php echo $cart['price']; ?>">
-                                        <input type="submit" name="update_cart" value="Cập nhật" class="option-btn">
-                                    </div>
-                                </td>
-                                <td>
-                                    <input type="hidden" name="prod_id" value="<?php echo $cart['product_id']; ?>">
+                                <td>    
+                                   
                                     <input type="submit" value="Xoá khỏi giỏ hàng" name="remove_from_cart" class="btn">
+                                   
                                 </td>
-                            </form>
-                            <td><?php echo number_format($cart['price'] * $cart['quantity']); ?> đồng</td>
-                        </tr>
+                                <td><?php echo number_format($cart['price'] * $cart['quantity']); ?> $</td>
+                            </tr>
+                        </form>
                         <?php
                     }
                 } else {
@@ -113,14 +115,11 @@ if (isset($_POST['update_cart'])) {
                 ?>
             </tbody>
         </table>
-
-        </form>
-
         <div class="total-price">
             <table>
                 <tr>
                     <td><strong>Tổng tiền:</strong></td>
-                    <td><?php echo $cost; ?> đồng</td>
+                    <td><?php echo number_format($cost); ?> $</td>
                 </tr>
             </table>
         </div>

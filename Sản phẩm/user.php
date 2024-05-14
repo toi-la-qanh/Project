@@ -63,36 +63,37 @@ if (isset($_POST['edit_phone'])) {
         <div class="user-profile">
             <table>
                 <tr>
-                    <p>Tên:
+                    <td>Tên:</td>
+                    <td>
                         <span>
                             <input type="text" name="user_name" class="box" value="<?php echo $user['name']; ?>">
                         </span>
                         <button type="submit" name="edit_name" class="edit-button">✎</button>
-                    </p>
+                    </td>
                 </tr>
                 <tr>
-                    <p>Email:
-                        <span><?php echo $user['email']; ?></span>
-                    </p>
+                    <td>Email:</td>
+                    <td><span><?php echo $user['email']; ?></span></td>
                 </tr>
                 <tr>
-                    <p>Địa chỉ:
+                    <td>Địa chỉ:</td>
+                    <td>
                         <span>
                             <input type="text" name="user_address" class="box" value="<?php echo $user['address']; ?>">
                         </span>
                         <button type="submit" name="edit_address" class="edit-button">✎</button>
-                    </p>
+                    </td>
                 </tr>
                 <tr>
-                    <p>Số điện thoại:
+                    <td>Số điện thoại:</td>
+                    <td>
                         <span>
                             <input type="text" name="user_phone" class="box" value="<?php echo $user['phone']; ?>">
-                            <button type="submit" name="edit_phone" class="edit-button">✎</button>
                         </span>
-                    </p>
+                        <button type="submit" name="edit_phone" class="edit-button">✎</button>
+                    </td>
                 </tr>
             </table>
-
             <div class="flex">
                 <a href="index.php?logout=<?php echo $user_id; ?>" onclick="return confirm('Bạn muốn đăng xuất?');"
                     class="delete-btn">Đăng xuất</a>

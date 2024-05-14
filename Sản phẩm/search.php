@@ -83,7 +83,7 @@ if (isset($_POST['add_to_cart'])) {
                                 </div>
                                 <div class="products_text">
                                     <h2><?php echo $product_from_key['name']; ?></h2>
-                                    <h3><?php echo $product_from_key['price']; ?></h3>
+                                    <h3><?php echo number_format($product_from_key['price']); ?> $</h3>
                                     Số lượng:
                                     <input type="number" min="1" name="quantity" value="1"
                                         max="<?php echo $product_from_key['quantity']; ?>">

@@ -88,7 +88,12 @@ nav ul li a:hover{
     background-clip: text;
     -webkit-text-fill-color: transparent;    
 }
-
+.products .products_text input[type="number"] {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    max-width: 60px;
+    text-align: center;
+}
 .products .box{
     width: 90%;
     margin: 0 auto;
@@ -223,14 +228,14 @@ nav ul li a:hover{
 .cart .quantity-control input[type="number"] {
     border: 1px solid #ccc;
     border-radius: 3px;
-    max-width: 70px;
-    text-align: end;
+    max-width: 60px;
+    text-align: center;
 }
 
 .cart .btn {
-    background-color: #512da8;
-    color: #fff;
+    background: linear-gradient(to right, #c72092 , #6c14d0);
     padding: 5px 10px;
+    color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -244,13 +249,16 @@ nav ul li a:hover{
 .cart td {
     padding: 30px;
     border-bottom: 1px solid #ddd;
-    text-align: left -30%;
+    text-align: center;
 }
 .cart th {
-    background-color: #c72092;
+    background: #c72092;
+    text-align: center;
+
 }
+
 .cart td:last-child {
-    text-align: right;
+    text-align: center;
 }
 
 .cart .quantity-control {
@@ -274,12 +282,13 @@ nav ul li a:hover{
 .cart .total-price{
     display:flex;
     justify-content:flex-end;
+    text-align: center;
 }
 
 .cart .total-price table{
     border-top: 3px solid #ff523b;
     width: 100%;
-    max-width: 300px;
+    max-width: 400px;
 }
 /* thêm cái search(?)*/
 .search {
@@ -317,11 +326,11 @@ margin-right: 10px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin: 20px auto;
-    max-width: 400px;
+    max-width: 600px;
     padding: 100px;
     display: flex;
     flex-direction: column;
-    align-items: center
+    align-items: center;
 }
 
 .user-profile p {
@@ -336,7 +345,7 @@ margin-right: 10px;
     font-weight: fixed;
 }
 
-.edit-button {
+.user-profile .edit-button {
     background-color: #C0C0C0;
     border: none;
     color: black;
@@ -348,16 +357,16 @@ margin-right: 10px;
     border-radius: 5px;
 }
 
-.edit-button:hover {
+.user-profile .edit-button:hover {
     background-color: #45a049;
 }
 .user-profile table {
     width: 100%;
+    max-width: 600px;
 }
 
 .user-profile td {
     padding: 8px;
-    border-right: 10px;
 }
 
 .user-profile .box {
@@ -382,7 +391,7 @@ margin-right: 10px;
 }
 
 .user-profile .flex .delete-btn {
-    background-color: #c72092;
+    background: linear-gradient(to right, #c72092 , #6c14d0);
     color: white;
     padding: 10px 20px;
     text-align: center;
