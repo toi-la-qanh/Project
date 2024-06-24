@@ -1,22 +1,24 @@
 <?php
 include "database/sql_connection.php";
-session_start();
+
 if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $pass = $_POST['password'];
 
     $database = new SQLConnect();
     $query = $database->connect();
-    $Execquery = $query->prepare("SELECT * FROM `account_guest` WHERE email = '$email' AND password = '$pass'");
+    $Execquery = $query->prepare("SELECT * FROM `account_guest` WHERE email = '$email'");
     $Execquery->execute();
-
-    if ($Execquery->rowCount() > 0) {
-        $row = $Execquery->fetch();
-        $_SESSION['user_id'] = $row['id'];
-        header('location:home.php');
-    } else {
-        $message[] = "Sai tài khoản hoặc mật khẩu!";
+    $user = $Execquery->fetch();
+    if ($user) {
+        if (password_verify($_POST['password'], $user['password'])) {
+            session_start();
+            $_SESSION['user_id'] = $user['id'];
+            sleep(2);
+            header('location:home.php');
+        }
     }
+    $message[] = "Sai tài khoản hoặc mật khẩu!";
 }
 ?>
 
@@ -27,7 +29,7 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="css/login.css?v=<?php echo time(); ?>"  type="text/css" />
+    <link rel="stylesheet" href="css/login.css?v=<?php echo time(); ?>" type="text/css" />
     <title>Login</title>
 </head>
 

@@ -2,23 +2,23 @@
 include "database/sql_connection.php";
 if (isset($_POST['submit'])) {
     $email = $_POST['email'];
-    $name = $_POST['name'];
-    $pass = $_POST['password'];
-
     $db = new SQLConnect();
     $query = $db->connect();
-    $Execquery = $query->prepare("SELECT * FROM `account_guest` WHERE name = '$name' 
-    AND password = '$pass' AND email = '$email'");
-    $Execquery->execute();
-
-    if ($Execquery->rowCount() > 0) {
+    $check = $query->prepare("SELECT * FROM `account_guest` WHERE email = '$email'");
+    $check->execute();
+    if ($_POST['password'] != $_POST['cpassword']) {
+        $message[] = "Mật khẩu không trùng khớp!";
+    } else if ($check->rowCount() > 0) {
         $message[] = "Tài khoản đã tồn tại!";
-    } 
-    else//add account of user into database
-    {
-        $query->exec("INSERT INTO `account_guest`(id, name, password, email) 
-        VALUES(NULL, '$name', '$pass', '$email')");
-        $message[] = "Đăng ký thành công!";
+
+    } else {
+        $Execquery = $query->prepare("INSERT INTO `account_guest`(id,name, password, email) 
+        VALUES(NULL,:name, :password, :email)");
+        $Execquery->bindValue('email', $_POST['email']);
+        $Execquery->bindValue('name', $_POST['name']);
+        $Execquery->bindValue('password', password_hash($_POST['password'], PASSWORD_BCRYPT));
+        $Execquery->execute();
+        sleep(2);
         header('location:index.php');
     }
 
@@ -32,7 +32,7 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="css/login.css?v=<?php echo time(); ?>"  type="text/css" />
+    <link rel="stylesheet" href="css/login.css?v=<?php echo time(); ?>" type="text/css" />
     <title>Register</title>
 </head>
 
@@ -54,8 +54,10 @@ if (isset($_POST['submit'])) {
                 <h1>Tạo tài khoản</h1>
                 <input type="text" name="name" required placeholder="Nhập tài khoản" class="box">
                 <input type="password" name="password" required placeholder="Nhập mật khẩu" class="box">
+                <input type="password" name="cpassword" required placeholder="Nhập lại mật khẩu" class="box">
                 <input type="email" name="email" required placeholder="Nhập email" class="box">
-                <button type="submit" name="submit" class="btn" value="">Đăng ký</button>   
+                <button type="submit" name="submit" class="btn" value="">Đăng ký</button>
+
             </form>
         </div>
         <div class="toggle">
